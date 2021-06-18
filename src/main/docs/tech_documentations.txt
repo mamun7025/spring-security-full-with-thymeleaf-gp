@@ -1,0 +1,8 @@
+Database naming convention
+
+erp_dev = erp development environment
+erp_prod = erp production environment
+werp_prod = walton erp production environment
+
+erp_tmpl = erp db template
+prj_tmpl_db = project template database

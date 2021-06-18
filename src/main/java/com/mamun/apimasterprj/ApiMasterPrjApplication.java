@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApimasterprjApplication {
+public class ApiMasterPrjApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApimasterprjApplication.class, args);
+        SpringApplication.run(ApiMasterPrjApplication.class, args);
     }
 
 }
