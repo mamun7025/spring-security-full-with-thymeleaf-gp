@@ -25,5 +25,14 @@ public class TestController {
 
     }
 
+    @GetMapping(path = "/getAboutPageData", produces = "application/json")
+    public Map<String, Object> getAboutPageData() {
+
+        Map<String, Object> returnJSON = new HashMap<>();
+        returnJSON.put("result", "success: Welcome to About Page");
+        return returnJSON;
+
+    }
+
 
 }
