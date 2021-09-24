@@ -22,6 +22,9 @@ public class Item {
     @Column(name = "DESCRIPTION", nullable = false)
     String description;
 
+    @Column(name = "SELLING_PRICE")
+    String sellingPrice;
+
     // System Log
     @Column(name = "CREATION_USER")
     String creationUser;
@@ -42,6 +45,11 @@ public class Item {
 
 
     public Item(){
+    }
+
+    public Item(String code, String description) {
+        this.code = code;
+        this.description = description;
     }
 
     public Item(String code, String description, String creationUser, Date creationDateTime, String lastUpdateUser, Date lastUpdateDateTime) {
@@ -75,6 +83,14 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(String sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public String getCreationUser() {
