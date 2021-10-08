@@ -1,4 +1,4 @@
 package com.mamun.apimasterprj.config;
 
-public class MyAppSecurityConfig {
+public class MyAppWebSecurityConfig {
 }
