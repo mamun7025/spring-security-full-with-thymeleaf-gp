@@ -1,0 +1,9 @@
+**  https://www.javainuse.com/spring/boot-jwt
+*** https://www.toptal.com/spring/spring-security-tutorial
+**  https://www.techgeeknext.com/spring/spring-boot-security-token-authentication-jwt
+**  https://github.com/murraco/spring-boot-jwt
+			https://medium.com/@xoor/jwt-authentication-service-44658409e12c
+*** https://www.youtube.com/watch?v=X80nJ5T7YpE
+
+https://blog.softtek.com/en/token-based-api-authentication-with-spring-and-jwt ------- very basic
+https://www.bezkoder.com/spring-boot-jwt-authentication/
