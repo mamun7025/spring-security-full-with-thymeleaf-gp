@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+
+
+        <!-- Horizontal Form -->
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Add User</h3>
+                &nbsp;&nbsp;
+                <a href="/user/index" th:href="@{/user/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="#" th:action="@{/user/save}" th:object="${user}" method="post" class="form-horizontal">
+                <div class="card-body">
+
+                    <input type="hidden" id="id" th:field="*{id}">
+
+                    <div class="form-group row">
+                        <label for="username" class="col-form-label col-sm-2 ">Username</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="" />
+                        </div>
+                        <div class="col-sm-5"><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="col-form-label col-sm-2 ">Password</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{password}" class="form-control" id="password" placeholder="" />
+                        </div>
+                        <div class="col-sm-5"><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="displayName" class="col-form-label col-sm-2 ">Display Name</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{displayName}" class="form-control" id="displayName" placeholder="" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="phoneNumber" class="col-form-label col-sm-2 ">Phone Number</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" placeholder="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-form-label col-sm-2 ">Email</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <a href="/user/index" th:href="@{/user/index}" class="btn btn-default"><i class="fas fa-times"></i> Cancel</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-info"><i class="fas fa-check"></i> Create</button>
+                </div>
+                <!-- /.card-footer -->
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+
+
+    </div><!--/. container-fluid -->
+</section>
+<!-- /.content -->
+
+
+
+</body>
+</html>
