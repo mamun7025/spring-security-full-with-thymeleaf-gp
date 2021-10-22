@@ -31,8 +31,7 @@ public class UserController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/indexAll")
-    public String getAll(Model model)
-    {
+    public String getAll(Model model) {
         List<User> list = service.getAll();
         model.addAttribute("users", list);
         return "acl/auth/user/index";
@@ -40,7 +39,7 @@ public class UserController {
     }
 
     @Secured({ "ROLE_EDITOR", "ROLE_ADMIN" })
-    @RequestMapping("/index")
+    @RequestMapping({"", "/index"})
     public String getAllPaginated(HttpServletRequest request, Model model, @RequestParam Map<String,String> clientParams)
     {
 
@@ -50,34 +49,21 @@ public class UserController {
         System.out.println(securityContext.getAuthentication().getPrincipal());
         System.out.println(securityContext.getAuthentication().getDetails());
 
-        int pageNum = 1;   //default page number is 0 (yes it is weird)
-        int pageSize = 5;  //default page size is 10
-        String sortField = "id";
-        String sortDir = "desc";
-
-        if (request.getParameter("pageNum") != null && !request.getParameter("pageNum").isEmpty()) pageNum = Integer.parseInt(request.getParameter("pageNum"));
-        if (request.getParameter("pageSize") != null && !request.getParameter("pageSize").isEmpty()) pageSize = Integer.parseInt(request.getParameter("pageSize"));
-        if (request.getParameter("sortField") != null && !request.getParameter("sortField").isEmpty()) sortField = request.getParameter("sortField");
-        if (request.getParameter("sortDir") != null && !request.getParameter("sortDir").isEmpty()) sortDir = request.getParameter("sortDir");
-
-
-        //Search Operation;
+        //Search Operation
         this.clientParams = clientParams;
         PaginatorService ps = new PaginatorService(request);
         Page<User> page = service.getAllPaginated(clientParams, ps.pageNum, ps.pageSize, ps.sortField, ps.sortDir);
         List< User > list = page.getContent();
-        //End Search Operation;
+        //End Search Operation
 
-
-        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("currentPage", ps.pageNum);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
 
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("sortField", ps.sortField);
+        model.addAttribute("sortDir", ps.sortDir);
+        model.addAttribute("reverseSortDir", ps.sortDir.equals("asc") ? "desc" : "asc");
 
-        model.addAttribute("users", list);
         model.addAttribute("objectList", list);
 
         return "acl/auth/user/index";

@@ -1,4 +1,4 @@
-package com.companyName.project.acl.custAuth.resAuth;
+package com.companyName.project.acl.authCust.resAuth;
 
 
 public class SysResourceAuthorizationController {
