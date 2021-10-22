@@ -1,6 +1,7 @@
 package com.companyName.project;
 
 import com.companyName.project.domain.base.Item;
+import com.companyName.project.modules.system.setup.AppDefaultUserService;
 import com.companyName.project.repository.base.ItemRepository;
 import com.companyName.project.test.JdbcTemplateTest;
 import com.companyName.project.test.DbSourceNativeSqlTest;
@@ -18,6 +19,10 @@ import java.util.List;
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
+
+
+    @Autowired
+    AppDefaultUserService defaultUserService;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -71,9 +76,13 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        this.defaultUserService.createDefaultUserAndRoles();
+
         this.callExternalMethods();
         this.runJDBC();
         jdbcTemplateTest.testJdbcTemplate();
+
     }
 
 

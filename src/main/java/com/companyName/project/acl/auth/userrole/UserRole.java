@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "AUTH_USER_ROLE")
+@Table(name = "ACL_USER_ROLE")
 public class UserRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) // its not work here
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
 
@@ -24,6 +25,17 @@ public class UserRole {
     String creationUser;
     Date lastUpdateDateTime;
     String lastUpdateUser;
+
+
+    public UserRole(){
+    }
+    public UserRole(User user, Role role, Date creationDateTime, String creationUser) {
+        this.user = user;
+        this.role = role;
+        this.creationDateTime = creationDateTime;
+        this.creationUser = creationUser;
+    }
+
 
     public Long getId() {
         return id;

@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+
+
+        <!-- Horizontal Form -->
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Add Role</h3>
+                &nbsp;&nbsp;
+                <a href="/user/index" th:href="@{/role/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="#" th:action="@{/role/save}" th:object="${object}" method="post" class="form-horizontal">
+                <div class="card-body">
+
+                    <input type="hidden" id="id" th:field="*{id}">
+
+                    <div class="form-group row">
+                        <label for="authority" class="col-form-label col-sm-2 ">Authority</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{authority}" class="form-control" id="authority" placeholder="" />
+                        </div>
+                        <div class="col-sm-5"><span th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}" class="text-danger"></span></div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label col-sm-2 ">Description</label>
+                        <div class="col-sm-5">
+                            <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="" />
+                        </div>
+                        <div class="col-sm-5"><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span></div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <a href="/menu/index" th:href="@{/role/index}" class="btn btn-default"><i class="fas fa-times"></i> Cancel</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-info"><i class="fas fa-check"></i> Create</button>
+                </div>
+                <!-- /.card-footer -->
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+
+
+    </div><!--/. container-fluid -->
+</section>
+<!-- /.content -->
 
 </body>
 </html>

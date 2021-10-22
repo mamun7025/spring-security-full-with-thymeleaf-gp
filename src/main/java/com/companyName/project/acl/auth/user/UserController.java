@@ -30,8 +30,9 @@ public class UserController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/indexAll")
+    @RequestMapping("/all")
     public String getAll(Model model) {
+
         List<User> list = service.getAll();
         model.addAttribute("users", list);
         return "acl/auth/user/index";
@@ -54,7 +55,6 @@ public class UserController {
         PaginatorService ps = new PaginatorService(request);
         Page<User> page = service.getAllPaginated(clientParams, ps.pageNum, ps.pageSize, ps.sortField, ps.sortDir);
         List< User > list = page.getContent();
-        //End Search Operation
 
         model.addAttribute("currentPage", ps.pageNum);
         model.addAttribute("totalPages", page.getTotalPages());

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "AUTH_USER")
+@Table(name = "ACL_USER")
 public class User {
 
     @Id
@@ -52,9 +52,9 @@ public class User {
 
     //    private List<Role> roles;
     @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "auth_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+    @JoinTable(name = "ACL_USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )
     private Set<Role> roles = new HashSet<>();
 

@@ -1,12 +1,13 @@
 package com.companyName.project.acl.auth.role;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "AUTH_ROLE")
+@Table(name = "ACL_ROLE")
 public class Role {
 
     @Id
@@ -82,6 +83,46 @@ public class Role {
 
     public void setLastUpdateUser(String lastUpdateUser) {
         this.lastUpdateUser = lastUpdateUser;
+    }
+
+
+
+    public Role(){
+    }
+    public Role(String authority, String description) {
+        this.authority = authority;
+        this.description = description;
+    }
+
+
+
+    @PrePersist
+    private void onPreInsert() {
+
+        this.creationDateTime = new Date();
+        if(this.creationUser == null){
+            Authentication authenticationContext = SecurityContextHolder.getContext().getAuthentication();
+            if ( authenticationContext != null ) {
+                this.creationUser = authenticationContext.getName();
+            }
+        }
+
+    }
+
+    @PreUpdate
+    private void onPreUpdate() {
+        this.lastUpdateDateTime = new Date();
+        if(this.lastUpdateUser == null){
+            Authentication authenticationContext = SecurityContextHolder.getContext().getAuthentication();
+            if ( authenticationContext != null ) {
+                this.lastUpdateUser = authenticationContext.getName();
+            }
+        }
+    }
+
+    @PreRemove
+    private void onPreDelete() {
+        //
     }
 
 
