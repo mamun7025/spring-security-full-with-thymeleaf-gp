@@ -1,7 +1,7 @@
 package com.companyName.project.config;
 
 
-import com.companyName.project.acl.jwt.config.JwtRequestFilter;
+import com.companyName.project.acl.jwt.config.JwtRequestAuthFilter;
 import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,14 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-// Hybrid authentication - Spring MVC session based + JWT token based
-// https://coderedirect.com/questions/454307/hybrid-authentication-spring-mvc-session-based-jwt-token-based
-// https://stackoverflow.com/questions/58270196/hybrid-authentication-spring-mvc-session-based-jwt-token-based
-
-
 @Configuration
 @EnableWebSecurity
-public class SpringWebSecurityConfig {
+public class SpringMultiWebSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -37,11 +32,10 @@ public class SpringWebSecurityConfig {
 
     @Configuration
     @Order(1)
-    public static class RestApiSecurityConfig extends WebSecurityConfigurerAdapter
-    {
+    public static class RestApiWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
-        private JwtRequestFilter jwtauthFilter;
+        private JwtRequestAuthFilter jwtAuthFilter;
 
         @Bean
         @Override
@@ -49,10 +43,9 @@ public class SpringWebSecurityConfig {
             return super.authenticationManagerBean();
         }
 
-
         @Override
-        protected void configure(HttpSecurity http) throws Exception
-        {
+        protected void configure(HttpSecurity http) throws Exception {
+
             http
                     .csrf().disable()
                     .antMatcher("/api/**")
@@ -60,7 +53,8 @@ public class SpringWebSecurityConfig {
                     .antMatchers("/api/authenticate").permitAll()
                     .anyRequest().authenticated()
                     .and()
-                    .addFilterBefore( jwtauthFilter, UsernamePasswordAuthenticationFilter.class );
+                    .addFilterBefore( jwtAuthFilter, UsernamePasswordAuthenticationFilter.class )
+            ;
 
             http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         }
@@ -72,8 +66,7 @@ public class SpringWebSecurityConfig {
 
     @Configuration
     @Order(2)
-    public static class LoginFormSecurityConfig extends WebSecurityConfigurerAdapter
-    {
+    public static class FormLoginWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private PasswordEncoder passwordEncoder;
@@ -98,16 +91,23 @@ public class SpringWebSecurityConfig {
 
 
         @Override
-        protected void configure(HttpSecurity http) throws Exception
-        {
+        protected void configure(HttpSecurity http) throws Exception {
             http
                     .csrf().disable()
                     .antMatcher("/**").authorizeRequests()
                     .antMatchers("/resources/**").permitAll()
                     .anyRequest().authenticated()
-                    .and().formLogin();
+                    .and()
+                    .formLogin()
+                    .permitAll()
+                    .and()
+                    .logout()
+                    .permitAll()
+                    .and()
+                    .exceptionHandling().accessDeniedPage("/403")
+            ;
 
-            http.sessionManagement().maximumSessions(1).expiredUrl("/customlogin?expired=true");
+
         }
 
 

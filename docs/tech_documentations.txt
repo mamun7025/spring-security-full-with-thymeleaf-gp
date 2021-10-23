@@ -6,3 +6,21 @@ werp_prod = walton erp production environment
 
 erp_tmpl = erp db template
 prj_tmpl_db = project template database
+
+
+=============== TO DO =================
+1. Add swagger plugin for rest controller
+
+
+
+=============== Reference Links ========
+==========> JWT
+https://www.javainuse.com/spring/boot-jwt
+
+==========> Hybrid authentication - Spring MVC session based + JWT token based
+// https://coderedirect.com/questions/454307/hybrid-authentication-spring-mvc-session-based-jwt-token-based
+// https://stackoverflow.com/questions/58270196/hybrid-authentication-spring-mvc-session-based-jwt-token-based
+
+*** https://medium.com/the-resonant-web/spring-boot-2-0-project-structure-and-best-practices-part-2-7137bdcba7d3
+*** https://github.com/khandelwal-arpit/springboot-starterkit
+
