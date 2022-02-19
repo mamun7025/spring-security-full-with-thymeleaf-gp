@@ -1,4 +1,4 @@
-package com.companyName.project.acl.jwt.test;
+package com.companyName.project.acl.test.jwt;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
