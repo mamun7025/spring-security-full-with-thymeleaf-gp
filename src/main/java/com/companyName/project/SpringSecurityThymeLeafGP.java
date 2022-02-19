@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiMasterPrjApplication {
+public class SpringSecurityThymeLeafGP {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiMasterPrjApplication.class, args);
+        SpringApplication.run(SpringSecurityThymeLeafGP.class, args);
     }
 
 }

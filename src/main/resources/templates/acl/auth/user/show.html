@@ -2,9 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show User</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+
+    <style>
+        .min-h30px {
+            min-height: 30px;
+        }
+    </style>
+
 </head>
 <body>
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3 class="m-0 text-dark">System User</h3>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-end">
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="#" th:href="@{/user}">User</a></li>
+                    <li class="breadcrumb-item active">View</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
 
 
 <!-- Main content -->
@@ -22,12 +53,12 @@
 
         <!-- Horizontal Form -->
         <div class="card card-default">
-            <div class="card-header">
-                <h3 class="card-title">Show User</h3>
+            <div class="card-header d-flex">
+                <h5 class="card-title">Show</h5>
                 &nbsp;&nbsp;
-                <a href="/user/index" th:href="@{/user/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+                <a href="#" th:href="@{/user/index}" class="text-decoration-none"><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
                 &nbsp;|&nbsp;
-                <a href="/user/create" th:href="@{/user/create}" class=""><i class="fas fa-file-alt"></i> New Form</a>
+                <a href="#" th:href="@{/user/create}" class="text-decoration-none"><i class="fas fa-file-alt"></i> New Form</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -74,23 +105,23 @@
                     <div class="form-group row">
                         <label for="deviceType" class="col-form-label col-sm-2 ">Device Type</label>
                         <div class="col-sm-5">
-                            <span th:utext="*{deviceType}" class="form-control" id="deviceType"></span>
+                            <span th:utext="*{deviceType}" class="form-control min-h30px" id="deviceType"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="deviceToken" class="col-form-label col-sm-2 ">Device Token</label>
                         <div class="col-sm-5">
-                            <span th:utext="*{deviceToken}" class="form-control" id="deviceToken"></span>
+                            <span th:utext="*{deviceToken}" class="form-control min-h30px" id="deviceToken"></span>
                         </div>
                     </div>
 
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <a href="/user/edit/" th:href="@{/user/edit/{id}(id=${object.id})}" class="btn btn-info"><i class="far fa-edit"></i> Edit</a>
+                    <a href="#" th:href="@{/user/edit/{id}(id=${object.id})}" class="btn btn-info"><i class="far fa-edit"></i> Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/user/delete/" th:href="@{/user/delete/{id}(id=${object.id})}" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</a>
+                    <a href="#" th:href="@{/user/delete/{id}(id=${object.id})}" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</a>
                 </div>
                 <!-- /.card-footer -->
             </form>
@@ -103,6 +134,13 @@
     </div><!--/. container-fluid -->
 </section>
 <!-- /.content -->
+
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/static/vendor/bootstrap5/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap5/bootstrap.bundle.min.js}"></script>
 
 
 </body>

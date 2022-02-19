@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,14 +27,12 @@ public class Item {
     // System Log
     @Column(name = "CREATION_USER")
     String creationUser;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "CREATION_DATETIME")
     Date creationDateTime;
 
     @Column(name = "LAST_UPDATE_USER")
     String lastUpdateUser;
-
     @UpdateTimestamp
     @LastModifiedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

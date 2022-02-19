@@ -10,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -65,6 +66,7 @@ public class SpringMultiWebSecurityConfig {
 
 
     @Configuration
+    @EnableGlobalMethodSecurity(prePostEnabled = true)
     @Order(2)
     public static class FormLoginWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -90,12 +92,23 @@ public class SpringMultiWebSecurityConfig {
         }
 
 
+        private static final String[] AUTH_WHITELIST = {
+                // -- Swagger UI v2
+                "/v2/api-docs",
+                "/swagger-resources",
+                "/swagger-resources/**",
+                // other public endpoints
+                "/h2-console/**",
+        };
+
         @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
+        protected void configure(HttpSecurity httpSecurity) throws Exception {
+            httpSecurity
                     .csrf().disable()
                     .antMatcher("/**").authorizeRequests()
                     .antMatchers("/resources/**").permitAll()
+                    .antMatchers("/h2-console", "/h2-console/**").permitAll() // don't use it in production
+                    .antMatchers(AUTH_WHITELIST).permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -106,6 +119,9 @@ public class SpringMultiWebSecurityConfig {
                     .and()
                     .exceptionHandling().accessDeniedPage("/403")
             ;
+
+            httpSecurity.csrf().disable();
+            httpSecurity.headers().frameOptions().disable();
 
 
         }

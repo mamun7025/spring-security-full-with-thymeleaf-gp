@@ -2,12 +2,15 @@ package com.companyName.project.acl.auth.user;
 
 import com.companyName.project.acl.auth.role.Role;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "ACL_USER")
@@ -16,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
+    private Long id;    // userId
 
     @Size(max = 15)
     @NotEmpty
@@ -26,6 +29,7 @@ public class User {
     @NotBlank(message = "*Password is mandatory")
     @Column(name = "PASSWORD")
     private String password;
+
     @Value("${true}")
     @Column(columnDefinition = "boolean default true")
     private boolean enabled = true;
@@ -34,11 +38,8 @@ public class User {
     boolean passwordExpired;
 
     // added attributes
-    String firstName;
-    String lastName;
     String displayName;          // marge firstName and lastName
     String phoneNumber;          // as username // maximum length of 15 digits
-
     String email;                // [user]@[mysite].com = 64 + 255, but it should be 254
     String gender;               // Optional
     // securityCode ------------ 4 digit code sent to mobile and need put this input box
@@ -59,6 +60,18 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
 
+
+    // System log fields
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "CREATION_DATETIME")
+    Date creationDateTime;
+    @Column(name = "CREATION_USER")
+    String creationUser;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "LAST_UPDATE_DATETIME")
+    Date lastUpdateDateTime;
+    @Column(name = "LAST_UPDATE_USER")
+    String lastUpdateUser;
 
 
     public Long getId() {
@@ -115,22 +128,6 @@ public class User {
 
     public void setPasswordExpired(boolean passwordExpired) {
         this.passwordExpired = passwordExpired;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getDisplayName() {
@@ -205,6 +202,37 @@ public class User {
         this.roles = roles;
     }
 
+    public Date getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(Date creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public String getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(String creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public Date getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    public void setLastUpdateDateTime(Date lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    public String getLastUpdateUser() {
+        return lastUpdateUser;
+    }
+
+    public void setLastUpdateUser(String lastUpdateUser) {
+        this.lastUpdateUser = lastUpdateUser;
+    }
 
 
 }

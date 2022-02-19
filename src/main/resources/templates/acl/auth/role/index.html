@@ -2,9 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Role</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+
 </head>
 <body>
+
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3 class="m-0 text-dark">Security Role</h3>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-end">
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}" >Home</a></li>
+                    <li class="breadcrumb-item active">Role</li>
+                    <li class="breadcrumb-item active">List</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+
 
 <!-- Main content -->
 <section class="content">
@@ -13,24 +41,52 @@
 
         <!--suppress ThymeleafVariablesResolveInspection -->
         <div class="alert alert-warning alert-dismissible" th:if="${warningMsg}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="btn btn-tool float-end btnCloseAlert" data-dismiss="alert"  data-toggle="tooltip" title="Close alert message" style="margin-top: -5px;">
+                <i class="fas fa-times"></i></button>
             <i class="icon fas fa-check"></i>
             <!--suppress ThymeleafVariablesResolveInspection -->
             <span th:text="${warningMsg}"></span>
         </div>
 
 
+
+        <!-- --------------Search box start --------------------------------------------------- -->
+        <div class="card ">
+            <div class="card-body">
+
+                <form>
+
+                    <div class="row form-row">
+                        <div class="form-group col-md-3">
+                            <label for="authority">Authority</label>
+                            <input type="text" name="authority" th:value="${param.authority}" id="authority" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="description">Description</label>
+                            <input type="text" name="description" th:value="${param.description}" id="description" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group col-md-3" style="margin-top: 24px;">
+                            <button type="submit" class="btn btn-warning btn-sm" id="btnSubmit" style="color: white;width: 50%;"><i class="fas fa-search"></i> Submit</button>
+                            <a href="" th:href="@{/user/index}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">Reset</a>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- --------------Search box end ------------------------------------------------------------------ -->
+
+
+
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-
                 <a th:href="@{/role/create}" class="btn btn-outline-primary"><i class="fas fa-plus-circle"> Add Role</i></a>
-
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fas fa-times"></i></button>
                 </div>
             </div>
 
@@ -69,7 +125,7 @@
                                         <a th:href="@{/role/edit/{id}(id=${thisObj.id})}" class="btn btn-outline-primary btn-sm">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
-                                        <a th:href="@{/role/delete/{id}(id=${thisObj.id})}" class="btn btn-outline-danger btn-sm">
+                                        <a th:href="@{/role/delete/{id}(id=${thisObj.id})}" class="btn btn-outline-danger btn-sm btnDelete" data-confirm="Are you sure to delete this item?">
                                             <i class="far fa-trash-alt"></i> Delete
                                         </a>
                                     </td>
@@ -101,6 +157,32 @@
 </section>
 <!-- /.content -->
 
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/static/vendor/bootstrap5/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap5/bootstrap.bundle.min.js}"></script>
+
+
+<script type="text/javascript">
+    $('.btnCloseAlert').click(function (){
+        $(this).parent().css('display', 'none');
+    });
+
+
+    var deleteLinks = document.querySelectorAll('.btnDelete');
+
+    for (var i = 0; i < deleteLinks.length; i++) {
+        deleteLinks[i].addEventListener('click', function(event) {
+            var choice = confirm(this.getAttribute('data-confirm'));
+            if (!choice) event.preventDefault();
+            if (choice) {
+                window.location.href = this.getAttribute('href');
+            }
+        });
+    }
+</script>
 
 
 </body>

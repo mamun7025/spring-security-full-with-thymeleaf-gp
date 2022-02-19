@@ -28,7 +28,7 @@ public class WelcomeController {
 
 
     @PreAuthorize("permitAll()")
-    @RequestMapping({ "/", "/welcome" })
+    @RequestMapping({"/welcome" })
     @ResponseBody
     public String printHello( HttpServletRequest request ){
 
