@@ -2,9 +2,149 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show Role</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+
+    <style>
+        .min-h30px {
+            min-height: 30px;
+        }
+    </style>
+
 </head>
 <body>
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h3 class="m-0 text-dark">Security Role</h3>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-end">
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="#" th:href="@{/role/index}">Role</a></li>
+                    <li class="breadcrumb-item active">Show</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <!--suppress ThymeleafVariablesResolveInspection -->
+        <div class="alert alert-info alert-dismissible" th:if="${successMsg}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <!--<h6></h6>-->
+            <i class="icon fas fa-check"></i>
+            <!--suppress ThymeleafVariablesResolveInspection -->
+            <span th:text="${successMsg}"></span>
+        </div>
+
+        <!-- Horizontal Form -->
+        <div class="card card-default">
+            <div class="card-header d-flex">
+                <h5 class="card-title">Role</h5>
+                &nbsp;&nbsp;
+                <a href="#" th:href="@{/role/index}" class="text-decoration-none"><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+                &nbsp;|&nbsp;
+                <a href="#" th:href="@{/role/create}" class="text-decoration-none"><i class="fas fa-file-alt"></i> New Form</a>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="#" th:object="${object}" method="post" class="form-horizontal object-show-form">
+                <div class="card-body">
+
+                    <!--                            <input type="hidden" id="id" th:field="*{id}">-->
+
+                    <div class="form-group row">
+                        <label for="id" class="col-form-label col-sm-2 ">ID</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{id}" class="form-control" id="id"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label col-sm-2 ">Authority</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{authority}" class="form-control" id="authority"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label col-sm-2 ">Description</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{description}" class="form-control" id="description"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="creationUser" class="col-form-label col-sm-2 ">Creation User</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{creationUser}" class="form-control" id="creationUser"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="creationDateTime" class="col-form-label col-sm-2 ">Creation DateTime</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{creationDateTime}" class="form-control" id="creationDateTime"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="lastUpdateUser" class="col-form-label col-sm-2 ">Last Update User</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{lastUpdateUser}" class="form-control min-h30px" id="lastUpdateUser"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="lastUpdateDateTime" class="col-form-label col-sm-2 ">Last Update Date Time</label>
+                        <div class="col-sm-5">
+                            <span th:utext="*{lastUpdateDateTime}" class="form-control min-h30px" id="lastUpdateDateTime"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <a href="#" th:href="@{/role/edit/{id}(id=${object.id})}" class="btn btn-info"><i class="far fa-edit"></i> Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" th:href="@{/role/delete/{id}(id=${object.id})}" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</a>
+                </div>
+                <!-- /.card-footer -->
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+
+
+    </div><!--/. container-fluid -->
+</section>
+<!-- /.content -->
+
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/static/vendor/bootstrap5/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap5/bootstrap.bundle.min.js}"></script>
+
+
 
 </body>
 </html>
