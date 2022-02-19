@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+</head>
+<body>
+
+Home Page....
+<div>( Spring Security with Thymeleaf - as Like Grails )</div>
+
+<a href="" th:href="@{/logout}">Logout</a> <br><br>
+
+<a href="" th:href="@{/user}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">User</a><br>
+<a href="" th:href="@{/role/index}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">Role</a><br>
+<a href="" th:href="@{/userrole}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">User Role</a><br>
+
+Login user.....
+Al-Mamun...
+
+Get JWT token
+
+
+
+<div sec:authorize="isAuthenticated()">
+    This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('ROLE_USER')">
+    This content is only shown to users.
+</div>
+
+
+Logged user: <span sec:authentication="name">Bob</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+
+<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+    This will only be displayed if authenticated user has role ROLE_ADMIN.
+</div>
+
+
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/static/vendor/bootstrap5/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap5/bootstrap.bundle.min.js}"></script>
+
+
+</body>
+</html>
