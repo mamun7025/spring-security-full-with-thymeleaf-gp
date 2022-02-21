@@ -17,12 +17,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3 class="m-0 text-dark">Security Role</h3>
+                <h3 class="m-0 text-dark">User - Role</h3>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-end">
                     <li class="breadcrumb-item"><a href="#" th:href="@{/}" >Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" th:href="@{/role/index}">Role</a></li>
+                    <li class="breadcrumb-item"><a href="#" th:href="@{/userrole/index}">User-Role</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </div><!-- /.col -->
@@ -41,10 +41,10 @@
 
         <!-- Horizontal Form -->
         <div class="card card-default">
-            <div class="card-header">
-                <h3 class="card-title">Add User Role</h3>
+            <div class="card-header d-inline-flex">
+                <h5 class="card-title">Add</h5>
                 &nbsp;&nbsp;
-                <a href="#" th:href="@{/userrole/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+                <a href="#" th:href="@{/userrole/index}" class="text-decoration-none"><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -58,6 +58,7 @@
                         <div class="col-sm-5">
                             <!--                                    <input type="text" th:field="*{user}" class="form-control" id="user" placeholder="" />-->
                             <select th:field="*{user}" class="form-control" id="user">
+                                <option value="">Select user</option>
                                 <option th:each="item : ${allUser}"
                                         th:value=${item.id}
                                         th:text=${item.username}>
@@ -72,6 +73,7 @@
                         <div class="col-sm-5">
                             <!--                                    <input type="text" th:field="*{role}" class="form-control" id="description" placeholder="" />-->
                             <select th:field="*{role}" class="form-control" id="role">
+                                <option value="">Select role</option>
                                 <option th:each="item : ${allRoles}"
                                         th:value=${item.id}
                                         th:text=${item.authority}>

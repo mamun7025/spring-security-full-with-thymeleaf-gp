@@ -41,8 +41,7 @@
 
         <!--suppress ThymeleafVariablesResolveInspection -->
         <div class="alert alert-warning alert-dismissible" th:if="${warningMsg}">
-            <button type="button" class="btn btn-tool float-end btnCloseAlert" data-dismiss="alert"  data-toggle="tooltip" title="Close alert message" style="margin-top: -5px;">
-                <i class="fas fa-times"></i></button>
+            <button type="button" class="btn btn-tool float-end btnCloseAlert" data-dismiss="alert"  data-toggle="tooltip" title="Close alert message" style="margin-top: -5px;"><i class="fas fa-times"></i></button>
             <i class="icon fas fa-check"></i>
             <!--suppress ThymeleafVariablesResolveInspection -->
             <span th:text="${warningMsg}"></span>
