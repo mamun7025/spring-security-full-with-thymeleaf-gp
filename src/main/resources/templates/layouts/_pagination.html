@@ -4,7 +4,7 @@
 <!--Pagination work start -------------------------------------------------------------- -->
 <div th:fragment="defaultPagination" th:if = "${totalPages > 1}">
 
-    <ul class="pagination pagination-sm m-0 float-right">
+    <ul class="pagination pagination-sm m-0 float-end">
         <li class="page-item">
             <a class="page-link" href="#" th:if = "${currentPage > 1}" th:href="@{ ${pagePath} + '?pageNum=1'+ '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + '&' + ${queryParams}}">First</a>
             <span class="page-link" th:unless="${currentPage > 1}">First</span>
@@ -75,7 +75,7 @@
         </li>
     </ul>
 
-    <div class = "pagination pagination-sm m-0 float-end mr-5">
+    <div class = "pagination pagination-sm float-end m-0 me-5">
         <b>Total Rows: [[${totalItems}]]</b>
     </div>
 
