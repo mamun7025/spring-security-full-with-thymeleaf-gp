@@ -13,6 +13,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -29,29 +30,47 @@ public class JwtAuthenticationController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    private final HashMap<String, String> responseError = new HashMap<>();
+
+
     @RequestMapping(value = "/api/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
 
-        authenticate( authenticationRequest.getUsername(), authenticationRequest.getPassword() );
+        boolean valid = authenticate( authenticationRequest.getUsername(), authenticationRequest.getPassword() );
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername( authenticationRequest.getUsername() );
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        if(valid){
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername( authenticationRequest.getUsername() );
+            String token = this.jwtTokenUtil.generateToken(userDetails);
+            return ResponseEntity.ok(new JwtResponse(token));
+        } else {
+            return ResponseEntity.ok(this.responseError);
+        }
 
-        return ResponseEntity.ok(new JwtResponse(token));
+
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    private boolean authenticate(String username, String password) throws Exception {
+
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);
 
         try {
-            authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(username, password)) ;
+            authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(username, password) ) ;
+            return true;
         } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
+            this.responseError.put("ERROR_TYPE", "USER_DISABLED");
+            this.responseError.put("ERROR_MSG", "Enter user is not enable");
+            return false;
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+            this.responseError.put("ERROR_TYPE", "INVALID_CREDENTIALS");
+            this.responseError.put("ERROR_MSG", "Please enter valid username and password");
+            return false;
+//            throw new Exception("INVALID_CREDENTIALS", e);
+        } catch (Exception e){
+            throw new Exception("UNKNOWN_EXCEPTION", e);
         }
+
     }
 
 

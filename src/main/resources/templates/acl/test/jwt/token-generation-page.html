@@ -2,11 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="_ctx-path" th:content="${#httpServletRequest.getContextPath()}" />
+    <title>JWT Token</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+
 </head>
 <body>
 
-Api access JWT token generate from this page
+
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+
+            <h4 class="text-center"> Api access JWT token generation </h4>
+
+            <form>
+                <div class="row mb-3">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10">
+                        <button type="button" id="btnGetToken" class="btn btn-primary">Get Token</button>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3 mt-5">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10">
+                        <textarea id="displayResponseData" class="form-control" title="display response data" style="min-height: 150px;"></textarea>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/static/vendor/bootstrap5/bootstrap.bundle.min.js" th:src="@{/vendor/bootstrap5/bootstrap.bundle.min.js}"></script>
+
+
+<script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ ''; </script>
+<script type="text/javascript">
+
+    var ctxPath = $("meta[name='_ctx-path']").attr("content");
+    var apiURL = ctxPath + "/api/authenticate";
+
+    function getJwtToken(){
+
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var userAuthData = {username: username, password: password};
+
+        $.ajax({
+            url: apiURL,
+            type: 'post',
+            dataType: 'json',                               // ----------> expecting data type from server
+            contentType: 'application/json; charset=utf-8', // ----------> sending data type to server
+            data: JSON.stringify( userAuthData ),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                $('#displayResponseData').html( JSON.stringify( data ) );
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( textStatus );
+                console.log( errorThrown );
+                $('#displayResponseData').html( JSON.stringify( errorThrown ) );
+            },
+            always: function (){
+                console.log( "finished.... ajax request" );
+            }
+        });
+    }
+
+    $(document).ready(function (){
+
+       $('#btnGetToken').click(function (){
+           getJwtToken();
+       }) ;
+
+    });
+
+</script>
+
 
 </body>
 </html>

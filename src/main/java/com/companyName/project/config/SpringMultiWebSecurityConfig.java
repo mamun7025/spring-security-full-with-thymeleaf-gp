@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -106,7 +108,8 @@ public class SpringMultiWebSecurityConfig {
             httpSecurity
                     .csrf().disable()
                     .antMatcher("/**").authorizeRequests()
-                    .antMatchers("/resources/**").permitAll()
+                    .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
+                    .antMatchers("/auth/generate-token").permitAll()
                     .antMatchers("/h2-console", "/h2-console/**").permitAll() // don't use it in production
                     .antMatchers(AUTH_WHITELIST).permitAll()
                     .anyRequest().authenticated()
@@ -123,6 +126,24 @@ public class SpringMultiWebSecurityConfig {
             httpSecurity.csrf().disable();
             httpSecurity.headers().frameOptions().disable();
 
+
+        }
+
+
+        @Override
+        public void configure(WebSecurity webSecurity) {
+
+            webSecurity.ignoring().antMatchers(HttpMethod.GET,
+                    "/favicon.ico",
+                    "/*.html",
+                    "/**/*.png",
+                    "/**/*.PNG",
+                    "/**/*.jpg",
+                    "/**/*.woff2",
+                    "/**/*.css.map",
+                    "/**/*.js.map",
+                    "/**/*.css",
+                    "/**/*.js");
 
         }
 
