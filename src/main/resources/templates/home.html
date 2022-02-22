@@ -7,42 +7,76 @@
     <link rel="stylesheet" href="/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css" th:href="@{/vendor/fontawesome5/fontawesome-free-5.15.4-web/css/all.css}">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/static/vendor/bootstrap5/bootstrap.min.css" th:href="@{/vendor/bootstrap5/bootstrap.min.css}">
+
+    <style>
+        .displayContentCenter {
+            display: block;
+            width: 70% !important;
+            margin: 0 auto;
+        }
+    </style>
+
 </head>
 <body>
 
-Home Page....
-<div>( Spring Security with Thymeleaf - as Like Grails )</div>
-
-<a href="" th:href="@{/logout}">Logout</a> <br><br>
-
-<a href="" th:href="@{/user}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">User</a><br>
-<a href="" th:href="@{/role/index}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">Role</a><br>
-<a href="" th:href="@{/userrole/index}" class="btn btn-outline-secondary btn-sm" style="width: 40%; text-align: center">User Role</a><br>
-
-Login user.....
-Al-Mamun...
-
-Get JWT token
 
 
+<div class="container mb-5 mt-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 xx-displayContentCenter ">
 
-<div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
+
+            <div class="mb-5">
+                <h3>Spring Security with Thymeleaf - Like Grails Framework</h3>
+            </div>
+
+
+            <!--Login user..... Al-Mamun...-->
+            <h5 class="d-inline-flex">
+                Logged user : <span sec:authentication="name">Bob</span>,
+                Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+            </h5>
+            &nbsp;&nbsp;
+            <a href="" th:href="@{/logout}" class="text-decoration-none text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <br>
+            JWT token generation link <a href="#" th:href="@{/auth/generate-token}"> Click here </a>
+            <br><br>
+
+            <a href="" th:href="@{/user}" class="btn btn-outline-primary btn-sm" style="width: 40%; text-align: center"><i class="fas fa-list"></i> User</a><br>
+            <a href="" th:href="@{/role/index}" class="btn btn-outline-success btn-sm" style="width: 40%; text-align: center"><i class="fas fa-list"></i> Role</a><br>
+            <a href="" th:href="@{/userrole/index}" class="btn btn-outline-info btn-sm" style="width: 40%; text-align: center"><i class="fas fa-list"></i> Security User-Role</a><br>
+
+
+            <br><br><br>
+            <label class="h5">Below some content showing base on User Role</label>
+
+            <div sec:authorize="isAuthenticated()">
+                This content is only shown to authenticated users.
+            </div>
+            <div sec:authorize="hasRole('ROLE_USER')">
+                This content is only shown to users.
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                This content is only shown to administrators.
+            </div>
+
+            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                This will only be displayed if authenticated user has role ROLE_ADMIN.
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
 </div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_USER')">
-    This content is only shown to users.
-</div>
 
 
-Logged user: <span sec:authentication="name">Bob</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
 
-<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-    This will only be displayed if authenticated user has role ROLE_ADMIN.
-</div>
+
+
 
 
 
