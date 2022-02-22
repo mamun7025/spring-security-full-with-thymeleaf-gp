@@ -1,6 +1,7 @@
 # spring security with thymeleaf as like grails
-Spring Boot Web Session+ Api Master Project
 
-In-memory database h2
+1. Spring Boot Web + Api Master Project
 
-Hybrid authentication: Spring Boot session based + JWT token based together
+2. In-memory database h2
+
+3. Hybrid authentication: Spring Boot session based + JWT token based auth together
