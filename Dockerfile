@@ -1,4 +1,6 @@
-FROM openjdk:8
+FROM tomcat:9
+RUN rm -rf /usr/local/tomcat/webapps/*
 EXPOSE 8181
-ADD target/docker-spring-security.jar docker-spring-security.jar
-ENTRYPOINT ["java", "jar", "/docker-spring-security.jar"]
+ARG WAR_FILE=build/libs/springsecurity_thymeleaf_gp-0.0.1-SNAPSHOT.war
+COPY ${WAR_FILE} /usr/local/tomcat/webapps/springsecurity_thymeleaf_gp.war
+CMD ["catalina.sh","run"]
