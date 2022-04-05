@@ -1,8 +1,10 @@
-package com.companyName.project.acl.jwt.config;
+package com.companyName.project.acl.security.jwt.config;
 
 
 import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ import java.io.IOException;
 @Component
 public class JwtRequestAuthFilter extends OncePerRequestFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(JwtRequestAuthFilter.class);
+
     @Autowired
     private UserDetailsServiceImpl jwtUserDetailsService;
 
@@ -30,6 +34,7 @@ public class JwtRequestAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String requestTokenHeader = request.getHeader("Authorization");
+        final String requestURL = request.getRequestURL().toString();
 
         String username = null;
         String jwtToken = null;
@@ -44,7 +49,7 @@ public class JwtRequestAuthFilter extends OncePerRequestFilter {
                 System.out.println("JWT Token has expired");
             }
         } else {
-            logger.warn("JWT Token does not begin with Bearer String");
+            logger.warn("JWT Token does not begin with Bearer string, url:{}", requestURL);
         }
 
         //Once we get the token validate it.

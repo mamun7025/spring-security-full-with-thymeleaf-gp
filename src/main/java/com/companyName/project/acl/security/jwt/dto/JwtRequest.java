@@ -1,4 +1,4 @@
-package com.companyName.project.acl.jwt.dto;
+package com.companyName.project.acl.security.jwt.dto;
 
 import java.io.Serializable;
 

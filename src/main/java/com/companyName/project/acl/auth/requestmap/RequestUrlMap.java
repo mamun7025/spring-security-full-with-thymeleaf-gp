@@ -11,16 +11,15 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "ACL_REQUEST_URL")
+@Table(name = "ACL_REQUEST_URL_MAP")
 public class RequestUrlMap  implements Serializable {
 
     private static final long serialVersionUID = 1;
 
-
     // "request_url_seq" is Oracle sequence name.
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REQ_URL_SEQ")
-    @SequenceGenerator(sequenceName = "request_url_seq", allocationSize = 1, name = "REQ_URL_SEQ")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACL_REQUEST_URLMAP_SEQ")
+//    @SequenceGenerator(sequenceName = "ACL_REQUEST_URLMAP_SEQ", allocationSize = 1, name = "ACL_REQUEST_URLMAP_SEQ")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     String url;

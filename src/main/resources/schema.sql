@@ -161,3 +161,18 @@ create table IF NOT EXISTS ACL_SYSTEM_RESOURCE_AUTH
 );
 
 
+
+-- auto-generated definition
+-- DROP TABLE IF EXISTS ACL_REQUEST_URL_MAP;
+create table IF NOT EXISTS ACL_REQUEST_URL_MAP
+(
+    ID                   BIGINT auto_increment
+        primary key,
+    URL                  VARCHAR(255),
+    CONFIG_ATTRIBUTE     VARCHAR(255),
+    HTTP_METHOD          INTEGER,
+    CREATION_DATETIME    TIMESTAMP,
+    CREATION_USER        VARCHAR(255),
+    LAST_UPDATE_DATETIME TIMESTAMP,
+    LAST_UPDATE_USER     VARCHAR(255)
+);

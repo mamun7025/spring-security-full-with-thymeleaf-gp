@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ public class User {
     private Long id;    // userId
 
     @Size(max = 15)
+    @NotNull
     @NotEmpty
     @NotBlank(message = "*Name is mandatory")
     @Column(name = "USERNAME", length = 15, nullable = false)
@@ -51,6 +53,7 @@ public class User {
     @Column(name = "PROFILE_PIC_PATH", length = 300)
     String profilePicPath;
 
+
     //    private List<Role> roles;
     @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "ACL_USER_ROLE",
@@ -58,7 +61,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )
     private Set<Role> roles = new HashSet<>();
-
 
 
     // System log fields

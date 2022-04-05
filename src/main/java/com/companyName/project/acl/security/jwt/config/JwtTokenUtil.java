@@ -1,4 +1,4 @@
-package com.companyName.project.acl.jwt.config;
+package com.companyName.project.acl.security.jwt.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

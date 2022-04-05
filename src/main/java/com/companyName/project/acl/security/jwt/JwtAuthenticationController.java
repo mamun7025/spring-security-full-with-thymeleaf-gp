@@ -1,9 +1,9 @@
-package com.companyName.project.acl.jwt;
+package com.companyName.project.acl.security.jwt;
 
 
-import com.companyName.project.acl.jwt.config.JwtTokenUtil;
-import com.companyName.project.acl.jwt.dto.JwtRequest;
-import com.companyName.project.acl.jwt.dto.JwtResponse;
+import com.companyName.project.acl.security.jwt.config.JwtTokenUtil;
+import com.companyName.project.acl.security.jwt.dto.JwtRequest;
+import com.companyName.project.acl.security.jwt.dto.JwtResponse;
 import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +66,6 @@ public class JwtAuthenticationController {
             this.responseError.put("ERROR_TYPE", "INVALID_CREDENTIALS");
             this.responseError.put("ERROR_MSG", "Please enter valid username and password");
             return false;
-//            throw new Exception("INVALID_CREDENTIALS", e);
         } catch (Exception e){
             throw new Exception("UNKNOWN_EXCEPTION", e);
         }
