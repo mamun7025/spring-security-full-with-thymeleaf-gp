@@ -25,6 +25,10 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.vendor/fontawesome5/fontawesome-free-5.15.4-web
+.src/main/resources/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/
+src/main/resources/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/
+/src/main/resources/static/vendor/fontawesome5/fontawesome-free-5.15.4-web/
 
 ### NetBeans ###
 /nbproject/private/
