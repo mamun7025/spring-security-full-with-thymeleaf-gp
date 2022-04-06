@@ -1,7 +1,12 @@
 package com.companyName.project.acl.auth.user;
 
 import com.companyName.project.acl.auth.role.Role;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +20,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ACL_USER")
+@EntityListeners(UserListener.class)
 public class User {
 
     @Id
@@ -64,14 +70,20 @@ public class User {
 
 
     // System log fields
+//    @CreationTimestamp
+    @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "CREATION_DATETIME")
     Date creationDateTime;
+    @CreatedBy
     @Column(name = "CREATION_USER")
     String creationUser;
+
+    @LastModifiedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "LAST_UPDATE_DATETIME")
     Date lastUpdateDateTime;
+    @LastModifiedBy
     @Column(name = "LAST_UPDATE_USER")
     String lastUpdateUser;
 
