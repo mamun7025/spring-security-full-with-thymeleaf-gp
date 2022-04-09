@@ -1,7 +1,7 @@
 package com.companyName.project.acl.auth.user;
 
 import com.companyName.project.acl.auth.role.Role;
-import org.hibernate.annotations.CreationTimestamp;
+import com.companyName.project.acl.auth.zlog.UserListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;

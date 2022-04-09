@@ -1,6 +1,7 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.zlog;
 
 
+import com.companyName.project.acl.auth.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,7 +69,7 @@ public class UserLog {
     public UserLog(){
     }
 
-    public UserLog( User entityInst, String action){
+    public UserLog(User entityInst, String action){
         this.username = entityInst.getUsername();
         this.password = entityInst.getPassword();
         this.displayName = entityInst.getDisplayName();

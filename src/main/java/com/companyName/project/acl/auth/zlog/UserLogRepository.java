@@ -1,4 +1,4 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.zlog;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,6 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.zlog;
 
+import com.companyName.project.acl.auth.user.User;
 import com.companyName.project.utils.BeanUtil;
 import javax.persistence.*;
 import javax.transaction.Transactional;
