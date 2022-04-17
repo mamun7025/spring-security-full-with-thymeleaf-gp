@@ -23,9 +23,10 @@ public class UserController {
 
     public Map<String, String> clientParams;
 
-    private UserService service;
+    private final UserService service;
+
     @Autowired
-    public void setInjectedBean(UserService service) {
+    public UserController(UserService service) {
         this.service = service;
     }
 
@@ -41,8 +42,7 @@ public class UserController {
 
     @Secured({ "ROLE_EDITOR", "ROLE_ADMIN" })
     @RequestMapping({"", "/index"})
-    public String getAllPaginated(HttpServletRequest request, Model model, @RequestParam Map<String,String> clientParams)
-    {
+    public String getAllPaginated(Model model, HttpServletRequest request, @RequestParam Map<String,String> clientParams) {
 
         SecurityContext securityContext = SecurityContextHolder.getContext();
         System.out.println(securityContext.getAuthentication().getName());

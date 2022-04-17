@@ -13,17 +13,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 @Controller
 @RequestMapping("/role")
 public class RoleController {
 
 
-    private RoleService service;
+    public Map<String, String> clientParams;
+
+    private final RoleService service;
     @Autowired
-    public void setInjectedBean(RoleService service) {
+    public RoleController(RoleService service) {
         this.service = service;
     }
 
@@ -39,10 +41,11 @@ public class RoleController {
 
     @Secured({"ROLE_EDITOR", "ROLE_ADMIN"})
     @RequestMapping("/index")
-    public String getAllPaginated(HttpServletRequest request, Model model) {
+    public String getAllPaginated(Model model, HttpServletRequest request, @RequestParam Map<String,String> clientParams) {
 
+        this.clientParams = clientParams;
         PaginatorService ps = new PaginatorService(request);
-        Page<Role> page = service.getAllPaginated(ps.pageNum, ps.pageSize, ps.sortField, ps.sortDir);
+        Page<Role> page = service.getAllPaginated(clientParams, ps.pageNum, ps.pageSize, ps.sortField, ps.sortDir);
         List< Role > list = page.getContent();
 
         model.addAttribute("currentPage", ps.pageNum);

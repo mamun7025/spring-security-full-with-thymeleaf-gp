@@ -2,11 +2,11 @@ package com.companyName.project.acl.auth.core.user;
 
 import com.companyName.project.acl.auth.core.role.Role;
 import com.companyName.project.acl.auth.zlog.UserListener;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -70,8 +70,7 @@ public class User {
 
 
     // System log fields
-//    @CreationTimestamp
-    @CreatedDate
+    @CreationTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "CREATION_DATETIME")
     Date creationDateTime;
@@ -79,7 +78,7 @@ public class User {
     @Column(name = "CREATION_USER")
     String creationUser;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "LAST_UPDATE_DATETIME")
     Date lastUpdateDateTime;
