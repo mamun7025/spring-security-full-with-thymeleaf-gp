@@ -1,7 +1,7 @@
-package com.companyName.project.acl.springUser;
+package com.companyName.project.acl.springuser;
 
-import com.companyName.project.acl.auth.user.User;
-import com.companyName.project.acl.auth.user.UserRepository;
+import com.companyName.project.acl.auth.core.user.User;
+import com.companyName.project.acl.auth.core.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

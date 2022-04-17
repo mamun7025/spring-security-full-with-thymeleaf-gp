@@ -1,4 +1,4 @@
-package com.companyName.project.acl.auth.role;
+package com.companyName.project.acl.auth.core.role;
 
 import com.companyName.project.utils.PaginatorService;
 import com.companyName.project.utils.SysMsgStr;

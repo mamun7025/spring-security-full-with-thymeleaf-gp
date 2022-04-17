@@ -4,7 +4,6 @@ import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
 import com.companyName.project.pages.HomePage;
 import com.companyName.project.pages.LoginPage;
-import com.companyName.project.utils.recorder.ScreenRecorderUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.core.user;
 
-import com.companyName.project.acl.auth.userrole.UserRole;
-import com.companyName.project.acl.auth.userrole.UserRoleRepository;
+import com.companyName.project.acl.auth.core.userrole.UserRole;
+import com.companyName.project.acl.auth.core.userrole.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

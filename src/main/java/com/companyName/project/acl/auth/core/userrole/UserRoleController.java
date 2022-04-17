@@ -1,7 +1,7 @@
-package com.companyName.project.acl.auth.userrole;
+package com.companyName.project.acl.auth.core.userrole;
 
-import com.companyName.project.acl.auth.role.RoleService;
-import com.companyName.project.acl.auth.user.UserService;
+import com.companyName.project.acl.auth.core.role.RoleService;
+import com.companyName.project.acl.auth.core.user.UserService;
 import com.companyName.project.utils.PaginatorService;
 import com.companyName.project.utils.SysMsgStr;
 import org.springframework.beans.factory.annotation.Autowired;

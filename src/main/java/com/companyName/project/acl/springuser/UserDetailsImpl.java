@@ -1,7 +1,7 @@
-package com.companyName.project.acl.springUser;
+package com.companyName.project.acl.springuser;
 
-import com.companyName.project.acl.auth.role.Role;
-import com.companyName.project.acl.auth.user.User;
+import com.companyName.project.acl.auth.core.role.Role;
+import com.companyName.project.acl.auth.core.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

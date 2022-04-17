@@ -1,7 +1,8 @@
-package com.companyName.project.acl.auth.userrole;
+package com.companyName.project.acl.auth.core.userrole;
 
-import com.companyName.project.acl.auth.role.Role;
-import com.companyName.project.acl.auth.user.User;
+import com.companyName.project.acl.auth.core.role.Role;
+import com.companyName.project.acl.auth.core.user.User;
+import com.companyName.project.acl.auth.core.userrole.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

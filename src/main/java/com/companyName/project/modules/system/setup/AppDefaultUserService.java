@@ -1,12 +1,12 @@
 package com.companyName.project.modules.system.setup;
 
-import com.companyName.project.acl.auth.role.Role;
-import com.companyName.project.acl.auth.role.RoleRepository;
-import com.companyName.project.acl.auth.user.User;
-import com.companyName.project.acl.auth.user.UserRepository;
-import com.companyName.project.acl.auth.user.UserService;
-import com.companyName.project.acl.auth.userrole.UserRole;
-import com.companyName.project.acl.auth.userrole.UserRoleRepository;
+import com.companyName.project.acl.auth.core.role.Role;
+import com.companyName.project.acl.auth.core.role.RoleRepository;
+import com.companyName.project.acl.auth.core.user.User;
+import com.companyName.project.acl.auth.core.user.UserRepository;
+import com.companyName.project.acl.auth.core.user.UserService;
+import com.companyName.project.acl.auth.core.userrole.UserRole;
+import com.companyName.project.acl.auth.core.userrole.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

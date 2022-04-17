@@ -1,6 +1,6 @@
 package com.companyName.project.config;
 
-import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
+import com.companyName.project.acl.springuser.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

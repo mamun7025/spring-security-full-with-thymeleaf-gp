@@ -4,7 +4,7 @@ package com.companyName.project.acl.security.jwt;
 import com.companyName.project.acl.security.jwt.config.JwtTokenUtil;
 import com.companyName.project.acl.security.jwt.dto.JwtRequest;
 import com.companyName.project.acl.security.jwt.dto.JwtResponse;
-import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
+import com.companyName.project.acl.springuser.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

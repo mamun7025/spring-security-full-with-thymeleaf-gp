@@ -1,7 +1,7 @@
 package com.companyName.project.acl.security.jwt.config;
 
 
-import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
+import com.companyName.project.acl.springuser.UserDetailsServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.core.user;
 
-import com.companyName.project.acl.auth.role.Role;
+import com.companyName.project.acl.auth.core.role.Role;
 import com.companyName.project.acl.auth.zlog.UserListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedBy;

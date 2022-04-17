@@ -1,4 +1,4 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.core.user;
 
 import com.companyName.project.utils.PaginatorService;
 import org.springframework.beans.factory.annotation.Autowired;

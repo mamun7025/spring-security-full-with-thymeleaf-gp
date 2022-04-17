@@ -1,4 +1,4 @@
-package com.companyName.project.acl.auth.role;
+package com.companyName.project.acl.auth.core.role;
 
 import lombok.Getter;
 import lombok.Setter;

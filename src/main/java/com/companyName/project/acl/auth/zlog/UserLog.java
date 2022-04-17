@@ -1,7 +1,7 @@
 package com.companyName.project.acl.auth.zlog;
 
 
-import com.companyName.project.acl.auth.user.User;
+import com.companyName.project.acl.auth.core.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;

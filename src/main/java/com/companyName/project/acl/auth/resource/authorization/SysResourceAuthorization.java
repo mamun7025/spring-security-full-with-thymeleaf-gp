@@ -1,7 +1,7 @@
-package com.companyName.project.acl.authCust.resAuth;
+package com.companyName.project.acl.auth.resource.authorization;
 
-import com.companyName.project.acl.auth.role.Role;
-import com.companyName.project.acl.authCust.resDef.SysResourceDefinition;
+import com.companyName.project.acl.auth.core.role.Role;
+import com.companyName.project.acl.auth.resource.definition.authorization.SysResourceDefinition;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;

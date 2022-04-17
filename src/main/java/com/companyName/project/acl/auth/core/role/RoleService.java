@@ -1,40 +1,41 @@
-package com.companyName.project.acl.auth.userrole;
+package com.companyName.project.acl.auth.core.role;
 
+import com.companyName.project.acl.auth.core.role.Role;
+import com.companyName.project.acl.auth.core.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-public class UserRoleService {
+public class RoleService {
 
 
-    private final UserRoleRepository repository;
+    private final RoleRepository repository;
 
     @Autowired
-    public UserRoleService(UserRoleRepository repository){
+    public RoleService(RoleRepository repository){
         this.repository = repository;
     }
 
 
-    public List<UserRole> getAll() {
-        List<UserRole> result = repository.findAll();
+    public List<Role> getAll() {
 
+        List<Role> result = repository.findAll();
         if(result.size() > 0) {
             return result;
         } else {
             return new ArrayList<>();
         }
+
     }
 
-    public Page< UserRole > getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
+    public Page< Role > getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
 
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
 
@@ -44,17 +45,12 @@ public class UserRoleService {
     }
 
 
-    public UserRole findById(Long id) throws Exception {
-        Optional<UserRole> entity = repository.findById(id);
-
-        if(entity.isPresent()) {
-            return entity.get();
-        } else {
-            throw new Exception("No record exist for given id");
-        }
+    public Role findById(Long id) {
+        Optional<Role> entity = repository.findById(id);
+        return entity.orElse(null);
     }
 
-    public UserRole getById(Long id) throws Exception {
+    public Role getById(Long id) {
         return this.findById(id);
     }
 
@@ -62,7 +58,7 @@ public class UserRoleService {
     public void setAttributeForCreateUpdate(){
     }
 
-    public UserRole createOrUpdate(UserRole entity) {
+    public Role createOrUpdate(Role entity) {
 
         this.setAttributeForCreateUpdate();
 
@@ -70,13 +66,8 @@ public class UserRoleService {
             entity = repository.save(entity);
 
         } else {
-            Optional<UserRole> entityOptional = repository.findById(entity.getId());
+            Optional<Role> entityOptional = repository.findById(entity.getId());
             if(entityOptional.isPresent()) {
-//                SystemMenu editEntity = entityOptional.get();
-//                editEntity.setDisplayName(entity.getDisplayName());
-//                editEntity.setPhoneNumber(entity.getPhoneNumber());
-//                editEntity = repository.save(editEntity);
-//                return editEntity;
                 entity = repository.save(entity);
             }
         }
@@ -85,15 +76,18 @@ public class UserRoleService {
     }
 
 
-    public void deleteById(Long id) throws Exception {
-        Optional<UserRole> entity = repository.findById(id);
+    public String deleteById(Long id) {
 
+        Optional<Role> entity = repository.findById(id);
         if(entity.isPresent()) {
             repository.deleteById(id);
         } else {
-            throw new Exception("No record exist for given id");
+            return "fail";
         }
+        return "success";
+
     }
+
 
 
 }

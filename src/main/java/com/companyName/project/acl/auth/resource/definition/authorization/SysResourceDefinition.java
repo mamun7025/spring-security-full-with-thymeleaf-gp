@@ -1,4 +1,4 @@
-package com.companyName.project.acl.authCust.resDef;
+package com.companyName.project.acl.auth.resource.definition.authorization;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;

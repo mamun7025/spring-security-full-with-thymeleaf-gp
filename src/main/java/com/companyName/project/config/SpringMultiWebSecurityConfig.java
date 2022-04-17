@@ -2,7 +2,7 @@ package com.companyName.project.config;
 
 
 import com.companyName.project.acl.security.jwt.config.JwtRequestAuthFilter;
-import com.companyName.project.acl.springUser.UserDetailsServiceImpl;
+import com.companyName.project.acl.springuser.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

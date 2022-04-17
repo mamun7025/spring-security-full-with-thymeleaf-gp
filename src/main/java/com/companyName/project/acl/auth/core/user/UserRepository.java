@@ -1,5 +1,6 @@
-package com.companyName.project.acl.auth.user;
+package com.companyName.project.acl.auth.core.user;
 
+import com.companyName.project.acl.auth.core.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

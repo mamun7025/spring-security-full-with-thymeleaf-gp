@@ -1,4 +1,4 @@
-package com.companyName.project.acl.authCust;
+package com.companyName.project.acl.auth;
 
 import org.springframework.stereotype.Service;
 
