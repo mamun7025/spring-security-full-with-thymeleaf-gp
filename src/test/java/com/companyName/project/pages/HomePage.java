@@ -8,20 +8,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class HomePage extends BasePage {
 
-    @FindBy(how = How.LINK_TEXT, using = "Login")
-    public WebElement lnkLogin;
+    @FindBy(how = How.LINK_TEXT, using = "User")
+    public WebElement lnkUserList;
 
-    @FindBy(how = How.LINK_TEXT, using = "Employee List")
-    public WebElement lnkEmployeeList;
+    @FindBy(how = How.LINK_TEXT, using = "Role")
+    public WebElement lnkRoleList;
 
-    public LoginPage ClickLogin() {
-        lnkLogin.click();
+    @FindBy(how = How.LINK_TEXT, using = "Security User-Role")
+    public WebElement lnkSecurityUserRoleList;
+
+
+    public LoginPage clickUserListLink() {
+        lnkUserList.click();
         System.out.println("Click Login");
-        return new LoginPage();
+//        return new LoginPage();
+        return null;
     }
 
-    public void ClickEmployeeList() {
-        lnkEmployeeList.click();
+    public void clickRoleList() {
+        lnkRoleList.click();
+    }
+
+    public void clickSecurityUserRoleList() {
+        lnkSecurityUserRoleList.click();
     }
 
 }

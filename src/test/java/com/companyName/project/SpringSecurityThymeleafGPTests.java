@@ -42,21 +42,20 @@ class SpringSecurityThymeleafGPTests {
     public void beforeEachTest() throws ATUTestRecorderException {
         logger.error("@....beforeEachTest");
 
-//        DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
-//        Date date = new Date();
-//        //Created object of ATUTestRecorder
-//        //Provide path to store videos and file name format.
-//        recorder = new ATUTestRecorder("D:\\ScriptVideos\\","TestVideo-"+dateFormat.format(date),false);
-//        //To start video recording.
-//        recorder.start();
-//        logger.error("@....setup");
+        /*DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
+        Date date = new Date();
+        //Created object of ATUTestRecorder
+        //Provide path to store videos and file name format.
+        recorder = new ATUTestRecorder("D:\\ScriptVideos\\","TestVideo-"+dateFormat.format(date),false);
+        //To start video recording.
+        recorder.start();
+        logger.error("@....setup");*/
     }
 
 
     @Test
     void contextLoads() throws Exception {
 
-//        ScreenRecorderUtil.startRecord("contextLoads");
         System.out.println(appUrl);
 
 		loginPage.Navigate(appUrl);
@@ -65,7 +64,18 @@ class SpringSecurityThymeleafGPTests {
         Thread.sleep(2000);
 		loginPage.ClickLogin();
 
-//        homePage.ClickLogin();
+        Thread.sleep(2000);
+        homePage.clickUserListLink();
+
+        webDriver.navigate().back();
+        Thread.sleep(2000);
+        homePage.clickRoleList();
+
+        webDriver.navigate().back();
+        Thread.sleep(2000);
+        homePage.clickSecurityUserRoleList();
+
+//        ScreenRecorderUtil.startRecord("contextLoads");
 //        ScreenRecorderUtil.stopRecord();
 
     }
